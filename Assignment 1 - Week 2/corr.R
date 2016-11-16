@@ -8,5 +8,14 @@
 ## Return a numeric vector of correlations
 
 corr <- function(directory, threshold = 0) {
-	
+	filenames <- list.files(directory, full.names = T)
+	cor_results <- vector("numeric")
+	for(i in 1:length(filenames)) {
+		data <- read.csv(filenames[i])
+		data <- data[complete.cases(data),]
+		if(nrow(data) > threshold) {
+			cor_results <- c(cor_results, cor(data$sulfate, data$nitrate))
+		}
+	}
+	cor_results
 }
