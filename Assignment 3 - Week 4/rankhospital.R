@@ -15,7 +15,8 @@ rankhospital <- function(state, outcome, num = "best") {
 	if(!state %in% data$State)
 		stop("invalid state")
 	if(!outcome %in% valid_outcomes)
-		stop("invalid outcome")## create a data frame with Names = hospital names from state, 
+		stop("invalid outcome")
+	## create a data frame with Names = hospital names from state, 
 	hospitals <- suppressWarnings(data.frame(
 		Names = as.character(data$Hospital.Name[data$State == state]), 
 		Outcomes = as.numeric(data[,outcome_cols[outcome]][data$State == state]),
